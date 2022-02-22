@@ -1,0 +1,7 @@
+{
+  "version": 2,
+  "projects": {
+    "planets": "apps/planets",
+    "planets-e2e": "apps/planets-e2e"
+  }
+}
