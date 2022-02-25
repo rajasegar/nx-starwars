@@ -1,0 +1,68 @@
+{
+  "root": "apps/navbar",
+  "sourceRoot": "apps/navbar/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/web:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/apps/navbar",
+        "index": "apps/navbar/src/index.ejs",
+        "baseHref": "/",
+        "main": "apps/navbar/src/starwars-navbar.js",
+        "tsConfig": "apps/navbar/tsconfig.app.json",
+        "styles": [],
+        "scripts": [],
+        "webpackConfig": "apps/navbar/webpack.config.js"
+      },
+      "configurations": {
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/navbar/src/environments/environment.ts",
+              "with": "apps/navbar/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/web:dev-server",
+      "options": {
+        "buildTarget": "navbar:build",
+        "hmr": true
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "navbar:build:webpack",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/navbar/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/navbar"],
+      "options": {
+        "jestConfig": "apps/navbar/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

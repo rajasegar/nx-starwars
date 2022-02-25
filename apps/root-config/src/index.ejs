@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Root Config</title>
+  <title>MicroFrontends with Nx and Single SPA</title>
   <!--
     Remove this if you only support browsers that support async/await.
     This is needed by babel to share largeish helper code for compiling async/await in older
@@ -31,9 +31,15 @@
   -->
   <script type="systemjs-importmap">
     {
-      "imports": {
-        "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@5.9.0/lib/system/single-spa.min.js"
-      }
+	"imports": {
+	    "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@5.9.0/lib/system/single-spa.min.js",
+	    "react": "https://cdn.jsdelivr.net/npm/react@17.0.1/umd/react.production.min.js",
+	    "react-dom": "https://cdn.jsdelivr.net/npm/react-dom@17.0.1/umd/react-dom.production.min.js",
+	    "rxjs": "https://cdn.jsdelivr.net/npm/@esm-bundle/rxjs@6.6.3/system/es2015/rxjs.min.js",
+	    "rxjs/operators": "https://cdn.jsdelivr.net/npm/@esm-bundle/rxjs@6.6.3/system/es2015/rxjs-operators.min.js",
+	    "@starwars/styleguide": "https://turbo-sspa.vercel.app/starwars-styleguide.js",
+	     "@starwars/api": "https://turbo-sspa.vercel.app/starwars-api.js"
+	}
     }
   </script>
   <link rel="preload" href="https://cdn.jsdelivr.net/npm/single-spa@5.9.0/lib/system/single-spa.min.js" as="script">
@@ -45,7 +51,9 @@
   <script type="systemjs-importmap">
     {
       "imports": {
-        "@starwars/root-config": "//localhost:9000/starwars-root-config.js"
+          "@starwars/root-config": "//localhost:9000/starwars-root-config.js",
+          "@starwars/navbar": "//localhost:9001/starwars-navbar.js",
+        "@starwars/people": "//localhost:9002/starwars-people.js"
       }
     }
   </script>
@@ -67,23 +75,20 @@
   <% } %>
    <template id="single-spa-layout">
       <single-spa-router>
-        <nav class="topnav">
-          <!-- <application name="@organization/nav"></application> -->
-        </nav>
-        <div class="main-content">
-          <route path="settings">
-            <application name="@organization/settings"></application>
+	<main>
+          <application name="@starwars/navbar"></application>
+          <route path="people">
+            <application name="@starwars/people"></application>
           </route>
-          <route path="clients">
-            <application name="@organization/clients"></application>
+          <route path="planets">
+            <application name="@starwars/planets"></application>
           </route>
 	  <route default>
-	    <h1>Hello Nx Single spa</h1>
+	    <h1 class="flex flex-row justify-center p-16">
+            <p class="max-w-md">This example project shows independently built and deployed microfrontends that use React and single-spa. Each nav link above takes you to a different microfrontend.</p>
+          </h1>
 	  </route>
-        </div>
-        <footer>
-          <!-- <application name="@organization/footer"></application> -->
-        </footer>
+	</main>
       </single-spa-router>
     </template>
 </head>
@@ -91,10 +96,9 @@
   <noscript>
     You need to enable JavaScript to run this app.
   </noscript>
-  <main>
-  </main>
   <script>
     System.import('@starwars/root-config');
+    System.import('@starwars/styleguide');
   </script>
   <import-map-overrides-full show-when-local-storage="devtools" dev-libs></import-map-overrides-full>
 </body>

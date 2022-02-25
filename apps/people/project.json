@@ -10,15 +10,13 @@
       "options": {
         "compiler": "babel",
         "outputPath": "dist/apps/people",
-        "index": "apps/people/src/index.html",
+        "index": "apps/people/src/index.ejs",
         "baseHref": "/",
-        "main": "apps/people/src/main.tsx",
-        "polyfills": "apps/people/src/polyfills.ts",
+        "main": "apps/people/src/starwars-people.js",
         "tsConfig": "apps/people/tsconfig.app.json",
-        "assets": ["apps/people/src/favicon.ico", "apps/people/src/assets"],
-        "styles": ["apps/people/src/styles.css"],
+        "styles": [],
         "scripts": [],
-        "webpackConfig": "@nrwl/react/plugins/webpack"
+        "webpackConfig": "apps/people/webpack.config.js"
       },
       "configurations": {
         "production": {
@@ -45,7 +43,7 @@
       },
       "configurations": {
         "production": {
-          "buildTarget": "people:build:production",
+          "buildTarget": "people:build:webpack",
           "hmr": false
         }
       }

@@ -1,10 +1,9 @@
 {
   "version": 2,
   "projects": {
+    "navbar": "apps/navbar",
     "people": "apps/people",
-    "people-e2e": "apps/people-e2e",
     "planets": "apps/planets",
-    "planets-e2e": "apps/planets-e2e",
     "root-config": "apps/root-config"
   }
 }

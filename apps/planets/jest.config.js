@@ -1,10 +1,4 @@
 module.exports = {
-  displayName: 'planets',
-  preset: '../../jest.preset.js',
-  transform: {
-    '^(?!.*\\.(js|jsx|ts|tsx|css|json)$)': '@nrwl/react/plugins/jest',
-    '^.+\\.[tj]sx?$': 'babel-jest',
-  },
-  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
-  coverageDirectory: '../../coverage/apps/planets',
+  modulePathIgnorePatterns: ["/cache", "/cypress", "/dist"],
+  setupFilesAfterEnv: ["<rootDir>/jest.setup.js"]
 };

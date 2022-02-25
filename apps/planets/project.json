@@ -10,15 +10,13 @@
       "options": {
         "compiler": "babel",
         "outputPath": "dist/apps/planets",
-        "index": "apps/planets/src/index.html",
+        "index": "apps/planets/src/index.ejs",
         "baseHref": "/",
-        "main": "apps/planets/src/main.tsx",
-        "polyfills": "apps/planets/src/polyfills.ts",
+        "main": "apps/planets/src/starwars-planets.js",
         "tsConfig": "apps/planets/tsconfig.app.json",
-        "assets": ["apps/planets/src/favicon.ico", "apps/planets/src/assets"],
-        "styles": ["apps/planets/src/styles.css"],
+        "styles": [],
         "scripts": [],
-        "webpackConfig": "@nrwl/react/plugins/webpack"
+        "webpackConfig": "apps/planets/webpack.config.js"
       },
       "configurations": {
         "production": {
@@ -45,7 +43,7 @@
       },
       "configurations": {
         "production": {
-          "buildTarget": "planets:build:production",
+          "buildTarget": "planets:build:webpack",
           "hmr": false
         }
       }
