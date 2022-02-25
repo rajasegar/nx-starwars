@@ -65,12 +65,34 @@
   <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/system.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/extras/amd.min.js"></script>
   <% } %>
+   <template id="single-spa-layout">
+      <single-spa-router>
+        <nav class="topnav">
+          <!-- <application name="@organization/nav"></application> -->
+        </nav>
+        <div class="main-content">
+          <route path="settings">
+            <application name="@organization/settings"></application>
+          </route>
+          <route path="clients">
+            <application name="@organization/clients"></application>
+          </route>
+	  <route default>
+	    <h1>Hello Nx Single spa</h1>
+	  </route>
+        </div>
+        <footer>
+          <!-- <application name="@organization/footer"></application> -->
+        </footer>
+      </single-spa-router>
+    </template>
 </head>
 <body>
   <noscript>
     You need to enable JavaScript to run this app.
   </noscript>
-  <main></main>
+  <main>
+  </main>
   <script>
     System.import('@starwars/root-config');
   </script>

@@ -1,20 +1,18 @@
-import { registerApplication, start } from "single-spa";
+import { registerApplication, start } from 'single-spa';
+import {
+  constructApplications,
+  constructRoutes,
+  constructLayoutEngine,
+} from 'single-spa-layout';
 
-registerApplication({
-  name: "@single-spa/welcome",
-  app: () =>
-    System.import(
-      "https://unpkg.com/single-spa-welcome/dist/single-spa-welcome.js"
-    ),
-  activeWhen: ["/"],
+const routes = constructRoutes(document.querySelector('#single-spa-layout'));
+const applications = constructApplications({
+  routes,
+  loadApp({ name }) {
+    return System.import(name);
+  },
 });
+const layoutEngine = constructLayoutEngine({ routes, applications });
 
-// registerApplication({
-//   name: "@starwars/navbar",
-//   app: () => System.import("@starwars/navbar"),
-//   activeWhen: ["/"]
-// });
-
-start({
-  urlRerouteOnly: true,
-});
+applications.forEach(registerApplication);
+start();
