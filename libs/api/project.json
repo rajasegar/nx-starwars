@@ -1,0 +1,68 @@
+{
+  "root": "libs/api",
+  "sourceRoot": "libs/api/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/web:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/libs/api",
+        "index": "libs/api/src/index.ejs",
+        "baseHref": "/",
+        "main": "libs/api/src/starwars-api.js",
+        "tsConfig": "libs/api/tsconfig.app.json",
+        "styles": [],
+        "scripts": [],
+        "webpackConfig": "libs/api/webpack.config.js"
+      },
+      "configurations": {
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "libs/api/src/environments/environment.ts",
+              "with": "libs/api/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/web:dev-server",
+      "options": {
+        "buildTarget": "api:build",
+        "hmr": true
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "api:build:webpack",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/api/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/api"],
+      "options": {
+        "jestConfig": "libs/api/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

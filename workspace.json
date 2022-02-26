@@ -4,6 +4,8 @@
     "navbar": "apps/navbar",
     "people": "apps/people",
     "planets": "apps/planets",
-    "root-config": "apps/root-config"
+    "root-config": "apps/root-config",
+    "api": "libs/api",
+    "styleguide": "libs/styleguide"
   }
 }
